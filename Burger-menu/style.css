@@ -1,0 +1,139 @@
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+.burger {
+  position: relative;
+  width: 25px;
+  height: 26px;
+}
+
+.burger:before,
+.burger span,
+.burger:after {
+  position: absolute;
+  right: 0;
+  left: -10px;
+  height: 4px;
+  border-radius: 2px;
+  background: green;
+}
+
+.burger:before,
+.burger:after {
+  content: "";
+}
+
+.burger:before {
+  top: 0;
+}
+
+.burger span {
+  top: 8px;
+}
+
+.burger:after {
+  bottom: 6px;
+}
+
+#burger:checked + .burger:before {
+  transition: transform 0.3s ease-in;
+  transform: rotate(45deg);
+  top: 14px;
+}
+
+#burger:checked + .burger span {
+  opacity: 0;
+}
+
+#burger:checked + .burger:after {
+  transition: transform 0.3s ease-in;
+  transform: rotate(-45deg);
+  bottom: 8px;
+}
+
+#burger:checked ~ .nav-list {
+  transition: opacity 0.3s ease-in;
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 6rem;
+}
+
+.nav-list {
+  position: absolute;
+  top: 16%;
+  right: 0;
+  left: 0;
+  background: white;
+  opacity: 0;
+  visibility: hidden;
+  text-align: center;
+  list-style: none;
+}
+
+.nav-item {
+  transition: 0.5s;
+  padding: 0px 1rem;
+}
+.nav-item:hover {
+  transform: scale(1.1);
+}
+
+.nav-link {
+  color: #000;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  opacity: 0.5;
+  color: green;
+}
+@media (min-width: 320px) and (max-width: 600px) {
+  #burger:checked ~ .nav-list {
+    flex-direction: column;
+    height: 250px;
+  }
+  #burger:checked + .burger:before {
+    top: 8px;
+  }
+  #burger:checked + .burger:after {
+    bottom: 14px;
+  }
+  .burger:before,
+  .burger span,
+  .burger:after {
+    position: absolute;
+    right: -30px;
+    left: 17px;
+  }
+  .nav-list {
+    top: 22%;
+  }
+}
+@media (min-width: 1024px) {
+  .burger {
+    display: none;
+  }
+  .nav-list {
+    display: flex;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
+    position: static;
+  }
+
+  .nav-item {
+    padding: 0 1.3rem;
+  }
+}
